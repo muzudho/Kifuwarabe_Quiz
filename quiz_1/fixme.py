@@ -13,8 +13,39 @@ class BoardHelper():
         return 9 * rank + (8 - file)
 
 
+    @staticmethod
+    def get_file_rank_by_horizontal_sq(horizontal_serial_sq):
+        """筋番号と段番号とマス番号は 0 から始まるとし、
+        横型のマス番号を渡すと、筋番号と段番号を返します
+        """
+        file = (8 - horizontal_serial_sq % 9)
+        rank = horizontal_serial_sq // 9
+
+        return (file, rank)
+
+
 class DebugHelper():
     """デバッグを助ける機能集"""
+
+
+    @staticmethod
+    def jsa_sq(horizontal_serial_sq):
+        """0 から始まるマスの通し番号は読みずらいので、
+        十の位を筋、一の位を段になるよう変換します。
+        これは将棋の棋士も棋譜に用いている記法です。
+        JSA は日本将棋連盟（Japan Shogi Association）
+
+        Parameters
+        ----------
+        serial_sq : int
+            0 から始まるマスの通し番号
+        """
+
+        (file,
+         rank) = BoardHelper.get_file_rank_by_horizontal_sq(horizontal_serial_sq)
+
+        return 10 * (file + 1) + (rank + 1)
+
 
 
     @staticmethod
@@ -98,6 +129,6 @@ if __name__ == '__main__':
         squares[left_effect_sq] = f'{1:3}'
 
         # デバッグ出力
-        print(f"[{datetime.datetime.now()}] n_sq:{n_sq}  right_effect_sq:{right_effect_sq}  left_effect_sq:{left_effect_sq}")
+        print(f"[{datetime.datetime.now()}] n_masu:{DebugHelper.jsa_sq(n_sq)}  right_effect_masu:{DebugHelper.jsa_sq(right_effect_sq)}  left_effect_masu:{DebugHelper.jsa_sq(left_effect_sq)}")
 
         f.write(DebugHelper.stringify_3characters_horizontal_board(squares))
