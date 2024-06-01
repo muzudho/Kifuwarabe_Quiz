@@ -205,3 +205,5 @@ if __name__ == '__main__':
             file_name="actual_97N.txt",
             # ９七桂
             n_sq=BoardHelper.jsa_to_sq(97))
+
+    print("きふわらべのお父ん「カンペキな計算だ。何も間違っていない」", flush=True)
