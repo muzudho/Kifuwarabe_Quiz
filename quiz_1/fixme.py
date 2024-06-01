@@ -56,7 +56,7 @@ class BoardHelper():
 
         Parameters
         ----------
-        serial_sq : int
+        horizontal_serial_sq : int
             0 から始まるマスの通し番号
         """
 
