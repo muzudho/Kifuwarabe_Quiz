@@ -137,7 +137,7 @@
 * 📄 `actual_97N.txt` - `fixme.py` ファイルの実行結果。９七桂のケース。バグがある
 * 📄 `expected_55N.txt` - `fixme.py` ファイルの正しい実行結果。５五桂のケース
 * 📄 `expected_97N.txt` - `fixme.py` ファイルの正しい実行結果。９七桂のケース
-* 📄 `fixme.py` - バグのあるファイル
+* 📄 `fixme.py` - バグのある Python スクリプト・ファイル
 
 
 # 実行方法
