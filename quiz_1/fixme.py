@@ -64,7 +64,7 @@ class DebugHelper():
         return f"""\
   9   8   7   6   5   4   3   2   1
 +---+---+---+---+---+---+---+---+---+
-│{s[0]:3}|{s[1]:3}|{s[2]:3}|{s[3]:3}|{s[4]:3}|{s[5]:3}|{s[6]:3}|{s[7]:3}|{s[8]:3}| 一
+|{s[0]:3}|{s[1]:3}|{s[2]:3}|{s[3]:3}|{s[4]:3}|{s[5]:3}|{s[6]:3}|{s[7]:3}|{s[8]:3}| 一
 +---+---+---+---+---+---+---+---+---+
 |{s[9]:3}|{s[10]:3}|{s[11]:3}|{s[12]:3}|{s[13]:3}|{s[14]:3}|{s[15]:3}|{s[16]:3}|{s[17]:3}| 二
 +---+---+---+---+---+---+---+---+---+
@@ -108,25 +108,30 @@ if __name__ == '__main__':
         squares[n_sq] = 'you'
 
         # 桂馬の右の方の利き（effect）
+        left_effect_sq = n_sq - (2 * board_width - 1)
         #
-        #   豆知識： チェスでは利きは control、コンピューター将棋では利きは effect。
+        #   👆　豆知識：　チェスでは利きは control、コンピューター将棋では利きは effect。
         #
-        #           利きを３駒関係の特徴として加えたことで有名な将棋エンジンに　第２４回世界コンピュータ将棋選手権に参加した AWAKE があるが、
-        #           当時のやねさんのブログによると、
-        #           この頃の AWAKE の巨瀬さんは利きを attack と呼び、
-        #           Apery の平岡さんは利きを effect と呼び、
-        #           無明やオズのアメリカ人の Wada さんは利きを control と呼び、
-        #           Stockfishの作者はイタリア系かノルウェー系だからか利きを effect と呼んでいる。
-        #           英語のネイティブでない開発者が多いからか、コンピューター将棋では effect で落ち着いた。
+        #               利きを３駒関係の特徴として加えたことで有名な将棋エンジンに　第２４回世界コンピュータ将棋選手権に参加した AWAKE があるが、
+        #               当時のやねさんのブログによると、
+        #               この頃の AWAKE の巨瀬さんは利きを attack と呼び、
+        #               Apery の平岡さんは利きを effect と呼び、
+        #               無明やオズのアメリカ人の Wada さんは利きを control と呼び、
+        #               Stockfishの作者はイタリア系かノルウェー系だからか利きを effect と呼んでいる。
+        #               英語のネイティブでない開発者が多いからか、コンピューター将棋では effect で落ち着いた。
         #
-        #           📖 [AWAKEのKPEの実装に向けて その1](https://yaneuraou.yaneu.com/2014/12/25/awake%E3%81%AEkpe%E3%81%AE%E5%AE%9F%E8%A3%85%E3%81%AB%E5%90%91%E3%81%91%E3%81%A6-%E3%81%9D%E3%81%AE1/)
+        #               📖 [AWAKEのKPEの実装に向けて その1](https://yaneuraou.yaneu.com/2014/12/25/awake%E3%81%AEkpe%E3%81%AE%E5%AE%9F%E8%A3%85%E3%81%AB%E5%90%91%E3%81%91%E3%81%A6-%E3%81%9D%E3%81%AE1/)
         #
-        right_effect_sq = n_sq - (2 * board_width + 1)
-        squares[right_effect_sq] = f'{0:3}'
+        #   👆　豆知識：　２段上の右マスは、盤の横幅２つ分より１つ手前
+        #
+        squares[left_effect_sq] = f'{0:3}'
 
         # 桂馬の左の方の利き
-        left_effect_sq = n_sq - (2 * board_width - 1)
-        squares[left_effect_sq] = f'{1:3}'
+        right_effect_sq = n_sq - (2 * board_width + 1)
+        #
+        #   👆　豆知識：　２段上の左マスは、盤の横幅２つ分より１つ奥
+        #
+        squares[right_effect_sq] = f'{1:3}'
 
         # デバッグ出力
         print(f"[{datetime.datetime.now()}] n_masu:{DebugHelper.jsa_sq(n_sq)}  right_effect_masu:{DebugHelper.jsa_sq(right_effect_sq)}  left_effect_masu:{DebugHelper.jsa_sq(left_effect_sq)}")
